@@ -33,11 +33,10 @@ public class CalculatorController {
                 model.addAttribute("result", result);
                 break;
             case "Division":
-                if (number2 != 0) {
-                    result = number1 / number2;
-                    model.addAttribute("result", result);
-
-                } else {
+                try {
+                        result = number1 / number2;
+                        model.addAttribute("result", result);
+                }catch (ArithmeticException e){
                     String result1 = " mau so bang 0";
                     model.addAttribute("result", result1);
                 }
