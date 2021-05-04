@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+</head>
+<body>
+<h2>Customer View</h2>
+<div th:object="${customer}">
+  <p> Name : <span th:text= "*{name}">Name</span></p>
+   <p> Address : <span th:text="*{address}">Address</span></p>
+   <p> Email  <span th:text="*{email}">Email </span></p>
+</div>
+
+
+</body>
+</html>

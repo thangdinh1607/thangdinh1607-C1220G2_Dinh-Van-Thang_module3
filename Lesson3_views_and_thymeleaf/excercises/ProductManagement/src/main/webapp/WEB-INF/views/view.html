@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+</head>
+<body>
+<div th:object="${product}">
+   Name: <p th:text="*{name}"></p>
+   Manufacturer : <p th:text="*{manufacturer}"></p>
+</div>
+</body>
+</html>
