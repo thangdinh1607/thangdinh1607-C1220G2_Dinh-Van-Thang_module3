@@ -7,6 +7,7 @@ import com.service.ServiceProductImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -27,7 +28,7 @@ public class ProductController {
         return "/create";
     }
     @PostMapping("/products/create")
-    public  String create(Product product){
+    public  String create(@ModelAttribute Product product){
         product.setId((int) (Math.random() * 1000));
         serviceProduct.save(product);
         return "redirect:/products";
@@ -43,7 +44,7 @@ public class ProductController {
         return "/update";
     }
     @PostMapping("products/edit")
-    public String edit(Product product){
+    public String edit(@ModelAttribute Product product){
         serviceProduct.update(product.getId(),product);
         return "redirect:/products";
     }
@@ -52,5 +53,4 @@ public class ProductController {
         model.addAttribute("product",serviceProduct.findById(id)) ;
         return "/view";
     }
-
 }
