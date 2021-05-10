@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Customer</title>
+</head>
+<body>
+<h2>Create Customer</h2>
+<form action="#" th:action="@{/customer-create}" method="post" th:object="${customer}">
+    <table border="2">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+            <td><p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p></td>
+        </tr>
+        <tr>
+            <td>Phone Number</td>
+            <td><input type="text" th:field="*{phoneNumber}"></td>
+            <td> <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Create"></td>
+            <td></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
