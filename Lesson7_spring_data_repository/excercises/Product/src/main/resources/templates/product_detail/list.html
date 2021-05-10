@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ProductDetail List</title>
+</head>
+<body>
+<h2>ProductDetail List</h2>
+ <button><a href="#"th:href="@{/productDetail-create}">Create Product Detail</a></button>
+<table border="1">
+    <tr>
+        <th>STT</th>
+        <th>ProductDetail</th>
+        <th colspan="2">Action</th>
+    </tr>
+<th:block th:each=" productDetail,state : ${productDetails} ">
+    <tr >
+        <td th:text="${state.count}"></td>
+        <td th:text="${productDetail.detail}"></td>
+        <td><a href="#" th:href="@{/productDetail-edit/__${productDetail.id}__}"> Edit</a></td>
+        <td><a href="#" th:href="@{/productDetail-delete/__${productDetail.id}__}">Delete </a> </td>
+    </tr>
+</th:block>
+
+</table>
+</body>
+</html>
