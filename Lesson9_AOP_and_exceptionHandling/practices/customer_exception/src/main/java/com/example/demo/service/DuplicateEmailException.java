@@ -1,4 +1,4 @@
 package com.example.demo.service;
 
-public class DuplicateEmailException {
+public class DuplicateEmailException extends Exception {
 }

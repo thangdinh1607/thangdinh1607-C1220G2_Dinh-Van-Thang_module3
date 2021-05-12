@@ -1,16 +1,22 @@
-package cg.wbd.grandemonstration.service.impl;
+package com.example.demo.service.impl;
 
-import cg.wbd.grandemonstration.model.Customer;
-import cg.wbd.grandemonstration.repository.CustomerRepository;
-import cg.wbd.grandemonstration.service.CustomerService;
+
+import com.example.demo.model.Customer;
+import com.example.demo.repository.CustomerRepository;
+import com.example.demo.service.CustomerService;
+import com.example.demo.service.DuplicateEmailException;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -48,8 +54,12 @@ public class CustomerServiceImplWithSpringData implements CustomerService {
     }
 
     @Override
-    public Customer save(Customer customer) {
-        return customerRepository.save(customer);
+    public Customer save(Customer customer) throws DuplicateEmailException {
+        try {
+            return customerRepository.save(customer);
+        }catch (DataIntegrityViolationException e){
+            return customerRepository.save(customer);
+        }
     }
 
     @Override

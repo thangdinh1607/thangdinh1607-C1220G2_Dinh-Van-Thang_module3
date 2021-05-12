@@ -1,11 +1,13 @@
-package cg.wbd.grandemonstration.service;
+package com.example.demo.service;
 
-import cg.wbd.grandemonstration.model.Customer;
+
+import com.example.demo.model.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
+
 
 public interface CustomerService {
     List<Customer> findAll();
@@ -18,7 +20,7 @@ public interface CustomerService {
 
     Optional<Customer> findOne(Long id);
 
-    Customer save(Customer customer);
+    Customer save(Customer customer) throws DuplicateEmailException;
 
     List<Customer> save(List<Customer> customers);
 

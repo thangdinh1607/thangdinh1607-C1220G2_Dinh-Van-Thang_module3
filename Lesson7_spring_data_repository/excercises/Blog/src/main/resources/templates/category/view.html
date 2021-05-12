@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Blog</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>STT</td>
+        <td>Content</td>
+    </tr>
+    <th:block th:each="b,stt :${blogs}">
+        <tr>
+            <td th:text="${stt.count}"></td>
+            <td th:text="${b.content}"></td>
+        </tr>
+    </th:block>
+</table>
+<button><a href="$" th:href="@{/category/list}">Back to Category List </a></button>
+</body>
+</html>

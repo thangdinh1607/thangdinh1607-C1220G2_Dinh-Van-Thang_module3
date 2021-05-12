@@ -1,4 +1,6 @@
 package com.example.demo.service;
 
-public interface IUserService {
+import com.example.demo.model.User;
+
+public interface IUserService extends IGeneralService<User>{
 }

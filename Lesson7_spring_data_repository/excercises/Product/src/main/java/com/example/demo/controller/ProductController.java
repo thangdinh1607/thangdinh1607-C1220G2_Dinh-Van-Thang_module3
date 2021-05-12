@@ -1,12 +1,12 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.model.Category;
 import com.example.demo.model.Product;
 import com.example.demo.model.ProductDetail;
-import com.example.demo.repository.IProductDetailRepository;
-import com.example.demo.repository.IProductRepository;
-import com.example.demo.service.IProductDetailService;
-import com.example.demo.service.IProductService;
+import com.example.demo.service.category.ICategoryService;
+import com.example.demo.service.product_detail.IProductDetailService;
+import com.example.demo.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +25,14 @@ public class ProductController {
 
     @Autowired
     IProductDetailService iProductDetailService;
+
+    @Autowired
+    ICategoryService iCategoryService;
+
+    @ModelAttribute("categories")
+    public List<Category> categories() {
+        return iCategoryService.findAll();
+    }
 
     @ModelAttribute("productDetail")
     public List<ProductDetail> productDetails() {
@@ -51,16 +59,34 @@ public class ProductController {
         modelAndView.addObject("products", productList);
         return modelAndView;
     }
+
     @GetMapping("/product-delete/{id}")
-    public ModelAndView answerDelete(@PathVariable int id){
+    public ModelAndView answerDelete(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView("product/delete");
-      Product product = iProductService.findById(id);
-      modelAndView.addObject("product",product);
+        Product product = iProductService.findById(id);
+        modelAndView.addObject("product", product);
         return modelAndView;
     }
+
     @PostMapping("/product-delete")
-    public String delete(@ModelAttribute Product product){
+    public String delete(@ModelAttribute Product product) {
         iProductService.delete(product.getId());
+        return "redirect:/product-list";
+    }
+
+    @GetMapping("/product-view/{id}")
+    public ModelAndView view(@PathVariable int id) {
+        return new ModelAndView("product_detail/view", "product", iProductService.findById(id));
+    }
+
+    @GetMapping("/product-edit/{id}")
+    public ModelAndView editForm(@PathVariable int id) {
+        return new ModelAndView("product/edit", "product", iProductService.findById(id));
+    }
+
+    @PostMapping("/product-edit")
+    public String edit(@ModelAttribute Product product) {
+        iProductService.save(product);
         return "redirect:/product-list";
     }
 }
