@@ -3,9 +3,14 @@ package com.example.demo.controller;
 import com.example.demo.model.Category;
 import com.example.demo.service.category.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("category/")
@@ -14,8 +19,18 @@ public class CategoryController {
     ICategoryService iCategoryService;
 
     @GetMapping("list")
-    public ModelAndView showList() {
-        return new ModelAndView("category/list", "categories", iCategoryService.findAll());
+    public ModelAndView showList(@PageableDefault(value = 2) Pageable pageable, @RequestParam Optional<String> name) {
+        String nameSearch = "";
+        ModelAndView modelAndView = new ModelAndView("category/list");
+        if (name.isPresent()) {
+            nameSearch = name.get();
+            modelAndView.addObject("name", nameSearch);
+            modelAndView.addObject("categories", iCategoryService.findByNameContaining(name.get(), pageable));
+        } else {
+            modelAndView.addObject("name", nameSearch);
+            modelAndView.addObject("categories", iCategoryService.findAll(pageable));
+        }
+        return modelAndView;
     }
 
     @GetMapping("create")
@@ -42,7 +57,10 @@ public class CategoryController {
 
     @GetMapping("view/{id}")
     public ModelAndView view(@PathVariable int id) {
-        return new ModelAndView("category/view", "blogs", iCategoryService.findById(id).getBlog());
+        ModelAndView modelAndView = new ModelAndView("category/view");
+        modelAndView.addObject("blogs", iCategoryService.findById(id).getBlog());
+        modelAndView.addObject("categories", iCategoryService.findById(id));
+        return modelAndView;
     }
 }
 
