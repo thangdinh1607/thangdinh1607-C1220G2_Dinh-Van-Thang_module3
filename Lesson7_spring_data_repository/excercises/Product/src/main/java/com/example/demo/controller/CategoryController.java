@@ -22,29 +22,32 @@ public class CategoryController {
     ICategoryService iCategoryService;
 
     @GetMapping("/category-create")
-    public ModelAndView showFormCreate(){
-        return new ModelAndView("category/create","category",new Category());
+    public ModelAndView showFormCreate() {
+        return new ModelAndView("category/create", "category", new Category());
     }
+
     @PostMapping("/category-create")
-    public String createCategory(@Valid @ModelAttribute Category category, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public String createCategory(@Valid @ModelAttribute Category category, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "category/create";
-        }else{
+        } else {
             iCategoryService.save(category);
             return "redirect:/category-list";
         }
+    }
 
-    }
     @GetMapping("/category-list")
-    public ModelAndView showList(){
-        return new ModelAndView("category/list","categories",iCategoryService.findAll());
+    public ModelAndView showList() {
+        return new ModelAndView("category/list", "categories", iCategoryService.findAll());
     }
+
     @GetMapping("/category-delete/{id}")
-    public ModelAndView answerDelete(@PathVariable int id){
-        return new ModelAndView("category/delete","category",iCategoryService.findById(id));
+    public ModelAndView answerDelete(@PathVariable int id) {
+        return new ModelAndView("category/delete", "category", iCategoryService.findById(id));
     }
+
     @PostMapping("/category-delete")
-    public String delete(@ModelAttribute Category category){
+    public String delete(@ModelAttribute Category category) {
         iCategoryService.delete(category.getId());
         return "redirect:/category-list";
     }

@@ -8,6 +8,9 @@ import com.example.demo.service.category.ICategoryService;
 import com.example.demo.service.product_detail.IProductDetailService;
 import com.example.demo.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -53,11 +56,8 @@ public class ProductController {
     }
 
     @GetMapping("/product-list")
-    public ModelAndView showList() {
-        List<Product> productList = iProductService.findAll();
-        ModelAndView modelAndView = new ModelAndView("product/list");
-        modelAndView.addObject("products", productList);
-        return modelAndView;
+    public ModelAndView showList(@PageableDefault (value = 2)Pageable pageable) {
+        return new  ModelAndView("product/list","products", iProductService.findAll(pageable));
     }
 
     @GetMapping("/product-delete/{id}")

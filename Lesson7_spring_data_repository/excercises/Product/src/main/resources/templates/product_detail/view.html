@@ -5,7 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<a href="#" th:href="@{/product-list}"> Back to List</a>
+<h2 th:text="${product.category.name}"></h2>
+<h2 th:text="${product.name}"> </h2>
 <p th:text="${product.productDetail.detail}"></p>
 <table>
     <tr>
@@ -15,5 +16,6 @@
     </tr>
 
 </table>
+<a href="#" th:href="@{/product-list}"> Back to List</a>
 </body>
 </html>
