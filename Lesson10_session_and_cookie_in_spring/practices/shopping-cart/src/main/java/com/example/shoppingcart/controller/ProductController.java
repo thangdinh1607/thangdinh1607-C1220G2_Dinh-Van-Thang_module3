@@ -9,24 +9,25 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/product")
 @SessionAttributes("cart")
 public class ProductController {
     @Autowired
-    ProductService productService;
+    private ProductService productService;
 
     @ModelAttribute("cart")
     public Cart youCart() {
         return new Cart();
     }
 
-    @GetMapping("/")
-    public ModelAndView showProduct() {
-        return new ModelAndView("index", "products", productService.findAll());
-    }
+//    @GetMapping("/products")
+//    public ModelAndView showProduct() {
+//        return new ModelAndView("/index", "products", productService.findAll());
+//    }
 
     @GetMapping("/product-create")
     public ModelAndView createForm() {
-        return new ModelAndView("product/create", "product", new Product());
+        return new ModelAndView("/product/create", "product", new Product());
     }
 
     @PostMapping("/product-create")
@@ -37,17 +38,17 @@ public class ProductController {
 
     @GetMapping("/product-view/{id}")
     public ModelAndView viewProduct(@PathVariable int id) {
-        return new ModelAndView("product/view", "product", productService.findById(id));
+        return new ModelAndView("/product/view", "product", productService.findById(id));
     }
 
     @GetMapping("/cart-view/{id}")
-    public ModelAndView addToCart(@PathVariable int id, @ModelAttribute Cart cart) {
+    public String addToCart(@PathVariable int id, @ModelAttribute Cart cart) {
         Product product = productService.findById(id);
-        cart.addToCard(product);
-        return new ModelAndView("redirect:/");
+        cart.addToCart(product);
+        return "redirect:/";
     }
     @GetMapping("/cart")
-    public  ModelAndView viewCart(@ModelAttribute Cart cart){
-        return new ModelAndView("cart/view","cart",cart.getCart());
+    public  ModelAndView viewCart( Cart cart){
+        return new ModelAndView("/product/view-cart","carts",cart.getCart());
     }
 }

@@ -7,6 +7,7 @@
 <body>
 <form action="$" th:action="@{/product-edit}" th:object="${product}" method="post">
     <input type="hidden" th:field="*{id}">
+    <input type="hidden" th:field="*{productDetail.id}">
     <table border="1">
         <tr>
             <td>Name</td>
@@ -15,6 +16,14 @@
         <tr>
             <td>Detail</td>
             <td><input type="text" th:field="*{productDetail.detail}"></td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td>
+                <select name="" id="" th:field="${product.category.id}">
+                    <option  th:each="c : ${categories}" th:text="${c.name}" th:value="${c.id}"></option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td><input type="submit" value="Edit"></td>

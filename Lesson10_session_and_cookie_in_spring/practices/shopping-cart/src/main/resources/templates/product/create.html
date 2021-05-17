@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
 </head>
 <body>
-<form action="/product-create" method="post" th:object="${product}" class="form-select-button">
+<form th:action="@{/product/product-create}" method="post" th:object="${product}" class="form-select-button">
     <table>
         <tr>
             <td>Name</td>
@@ -23,7 +23,7 @@
 
     </table>
     <input type="submit" value="create">
-     <button><a href="/">Cancel</a></button>
+     <button><a th:href="@{/}">Cancel</a></button>
 </form>
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>

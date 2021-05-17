@@ -17,20 +17,25 @@ public class BlogController {
     IBlogService iBlogService;
 
     @GetMapping
-    public ResponseEntity<List<Blog>> getAllBlog(){
+    public ResponseEntity<List<Blog>> getAllBlog() {
         List<Blog> blogs = iBlogService.findAll();
-        if(blogs.isEmpty()){
+        if (blogs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
-            return new ResponseEntity<>(blogs,HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(blogs, HttpStatus.OK);
         }
     }
+
     @PostMapping
-    public ResponseEntity<Blog> createBlog(@RequestBody Blog blog){
-        if(blog==null){
+    public ResponseEntity<Blog> createBlog(@RequestBody Blog blog) {
+        if (blog == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
-            return new ResponseEntity<>(blog,HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(blog, HttpStatus.CREATED);
         }
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<String> getBlogById(@PathVariable int id){
+        return new ResponseEntity<>( iBlogService.findById(id).getContent(),HttpStatus.OK);
     }
 }

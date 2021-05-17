@@ -1,5 +1,6 @@
 package com.example.blog.controller;
 
+import com.example.blog.model.Blog;
 import com.example.blog.model.Category;
 
 import com.example.blog.service.category.ICategoryService;
@@ -41,5 +42,10 @@ public class CategoryController {
             iCategoryService.save(category);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<List<Blog>> getBlogByCategory(@PathVariable int  id){
+        Category category = iCategoryService.findById(id);
+        return new ResponseEntity<>(category.getBlog(), HttpStatus.OK);
     }
 }

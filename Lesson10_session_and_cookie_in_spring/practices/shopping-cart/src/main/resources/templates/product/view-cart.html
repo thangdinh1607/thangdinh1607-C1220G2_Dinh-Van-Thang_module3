@@ -11,13 +11,14 @@
         <td>STT</td>
         <td>Product</td>
     </tr>
-    <th:block th:each="c,n:${cart}" >
+    <th:block th:each="c,n:${carts}" >
         <tr>
             <td th:text="${n.count}"></td>
+            <td th:text="${c.key.name}"></td>
             <td th:text="${c.value}"></td>
         </tr>
     </th:block>
-   <button> <a href="/"> Back to Shop</a> </button>
+   <button> <a th:href="@{/}"> Back to Shop</a> </button>
 </table>
 </body>
 </html>

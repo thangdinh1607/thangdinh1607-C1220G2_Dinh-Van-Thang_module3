@@ -80,13 +80,13 @@ public class ProductController {
     }
 
     @GetMapping("/product-edit/{id}")
-    public ModelAndView editForm(@PathVariable int id) {
-        return new ModelAndView("product/edit", "product", iProductService.findById(id));
+    public ModelAndView editForm(@PathVariable int id){
+        return new ModelAndView("product/edit","product",iProductService.findById(id));
     }
 
-    @PostMapping("/product-edit")
-    public String edit(@ModelAttribute Product product) {
-        iProductService.save(product);
-        return "redirect:/product-list";
+    @PostMapping ("/product-edit")
+    public ModelAndView edit (@ModelAttribute Product product){
+       iProductService.save(product);
+       return new ModelAndView("redirect:/product-list");
     }
 }

@@ -19,7 +19,7 @@
             <td th:text="${product.description}"></td>
         </tr>
 </table>
-<button> <a href="" th:href="@{/cart-view/__${product.id}__}">add to Cart</a> </button>
+<button> <a href="" th:href="@{/product/cart-view/__${product.id}__}">add to Cart</a> </button>
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>

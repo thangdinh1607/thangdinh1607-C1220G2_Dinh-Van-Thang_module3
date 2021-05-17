@@ -32,4 +32,5 @@ public class IBogService implements IBlogService {
     public void remove(int id) {
         iBlogRepository.deleteById(id);
     }
+
 }

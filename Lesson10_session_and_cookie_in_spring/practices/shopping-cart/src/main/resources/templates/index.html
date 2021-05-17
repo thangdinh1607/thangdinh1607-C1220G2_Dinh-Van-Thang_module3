@@ -18,12 +18,12 @@
             <tr>
                 <td th:text="${n.count}"></td>
                 <td th:text="${p.name}"></td>
-                <td><a href="" th:href="@{/product-view/__${p.id}__}">View </a></td>
+                <td><a href="" th:href="@{/product/product-view/__${p.id}__}">View </a></td>
             </tr>
         </th:block>
     </table>
-    <button><a href="/product-create">Create Product </a></button>
-    <button><a href="/cart"> Go to Cart</a></button>
+    <button><a th:href="@{/product/product-create}">Create Product </a></button>
+    <button><a th:href="@{/product/cart}"> Go to Cart</a></button>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </container>
