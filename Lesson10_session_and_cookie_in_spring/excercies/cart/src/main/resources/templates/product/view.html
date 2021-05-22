@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+</head>
+<body>
+<div class="container">
+    <h2>View Product</h2>
+    <div class="card" style="width: 18rem;" th:object="${product}">
+        <img th:src="@{'/'+ ${product.image}}" class="card-img-top" alt="noload" >
+        <div class="card-body">
+            <h5 class="card-title" th:text="${product.name}" ></h5>
+            <p class="card-text" th:text="${product.price}"></p>
+            <p class="card-text" th:text="${product.description}"></p>
+            <p class="card-text" th:if="${cart.getCart()}" th:text="${cart.countProductQuantity(product)}"></p>
+            <a th:href="@{/products/cart/__${product.getId()}__}" class="btn btn-primary">Add to Card</a>
+            <a th:href="@{/products}" class="btn btn-primary"> Back</a>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Product</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+</head>
+<body>
+<div class="container">
+    <h2> Create Product </h2>
+    <form th:action="@{/products/create}" method="post" th:object="${product}">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1"  placeholder="Name" th:field="${product.name}">
+            <p th:if="${#fields.hasErrors()}" th:errors="*{name}" class="text-danger"> ></p>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Description</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Description" th:field="*{description}">
+            <p th:if="${#fields.hasErrors()}" th:errors="*{description}" class="text-danger" ></p>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price" placeholder="Description" th:field="*{price}" >
+            <p th:if="${#fields.hasErrors()}" th:errors="*{price}" class="text-danger"></p>
+        </div>
+        <div class="form-group">
+            <label>Category</label>
+            <select  th:field="*{category}">
+                <option th:each="cate: ${categories}" th:value="${cate.id}" th:text="${cate.name}"> </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Image</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" th:field="*{image}">
+            <p th:if="${#fields.hasErrors()}" th:errors="*{image}" class="text-danger"></p>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

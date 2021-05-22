@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/products/delete}" method="post" th:object="${product}">
+        <h3> Do u want delete <span th:text="${product.name}" ></span> ?</h3>
+        <input type="hidden" th:field="${product.id}">
+        <input type="submit" value="Submit" class="btn btn-primary"> <a th:href="@{/products}" class="btn btn-primary">Cancel</a>
+    </form>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+</head>
+<body>
+<div class="container">
+    <h2> Edit Product </h2>
+    <form th:action="@{/products/create}" method="post" th:object="${product}">
+        <input type="hidden" th:field="${product.id}" ></input>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1"  placeholder="Name" th:field="${product.name}">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Description</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Description" th:field="*{description}">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price" placeholder="price" th:field="*{price}">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Image</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" th:field="*{image}">
+        </div>
+        <div class="form-group">
+            <label>Category</label>
+            <select  th:field="*{category}">
+                <option th:each="cate: ${categories}" th:value="${cate.id}" th:text="${cate.name}"> </option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Edit</button>
+    </form>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

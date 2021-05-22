@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Cart</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Cart List</h2>
+
+    <div class="row">
+        <th:block th:each="c:${carts}">
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <img th:src="@{'/'+ ${c.key.image}}" class="card-img-top" alt="noload" height="300">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${c.key.name}"></h5>
+                        <p class="card-text" th:text="${c.key.price}"></p>
+                        <p class="card-text" th:text="${c.key.description}"></p>
+                        <p class="card-text" th:text="${c.value}"></p>
+                        <a class="btn btn-primary" th:href="@{/cart/edit/__${c.value}__}">Edit Quantity</a>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </div>
+   Total Payment  : <h2 th:text="${totalPayment}"> </h2>
+    Count Item Quantity : <h2 th:text="${countItemQuantity}"></h2>
+    <a class="btn btn-primary" th:href="@{/}">Back to Category</a>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

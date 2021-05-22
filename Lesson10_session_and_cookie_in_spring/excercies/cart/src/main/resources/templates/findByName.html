@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<div class="container">
+
+    <h2>Product List</h2>
+    <a class="btn btn-primary" th:href="@{/products/create}">Create</a>
+    <table class="table table-light">
+        <thead>
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col" colspan="3">Action</th>
+        </tr>
+        </thead>
+        <tbody >
+        <tr th:each="p,n:${products}">
+            <th scope="row" th:text="${n.count}"></th>
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.description}"></td>
+            <td th:text="${p.category.getName()}"></td>
+            <td ><a th:href="@{/products/delete/__${p.getId()}__}" class="btn btn-danger">Delete </a></td>
+            <td ><a th:href="@{/products/edit/__${p.getId()}__}" class="btn btn-warning">Edit</a></td>
+            <td ><a th:href="@{/products/view/__${p.getId()}__}" class="btn btn-warning">View</a></td>
+        </tr>
+        </tbody>
+        <tr>
+            <td colspan="7"><a class="btn btn-primary" th:href="@{/}">Back to Category </a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
