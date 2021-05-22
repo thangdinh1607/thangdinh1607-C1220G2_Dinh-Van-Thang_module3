@@ -1,12 +1,7 @@
 package com.example.cart.model;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 @Entity
@@ -38,7 +33,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String description, double price, String image, Category category) {
+    public Product(@Size(min = 5, message = "input name >5 character") String name, @NotEmpty(message = "input description") String description, @Min(value = 1, message = ">1") double price, @NotEmpty(message = "insert img") String image, Category category) {
         this.name = name;
         this.description = description;
         this.price = price;

@@ -10,26 +10,16 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-10">
+        <div class="col-8">
             <h2 th:text="#{CategoryList}"></h2>
         </div>
-        <div class="col-2">
-            <div class="dropdown">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"th:text="#{Languages}">
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="/?lang=en">EngLish</a>
-                    <a class="dropdown-item" href="/?lang=vi">VietNam</a>
-                    <a class="dropdown-item" href="#">other</a>
-                </div>
-            </div>
-        </div>
+        <div  th:insert="~{fragment/header::header}"> </div>
+    </div>
+    <div class="row">
+        <a class="btn btn-primary" th:href="@{/products/create}" th:text="#{Create}"></a>
+        <a class="btn btn-primary" th:href="@{/products}" th:text="#{ShowALlProduct}"></a>
     </div>
 
-
-    <a class="btn btn-primary" th:href="@{/products/create}" th:text="#{Create}"></a>
-    <a class="btn btn-primary" th:href="@{/products/cart}" th:text="#{Cart}"> </a>
     <table class="table table-light">
         <thead>
         <tr>
@@ -46,13 +36,19 @@
             </td>
         </tr>
         </tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td><a class="btn btn-primary" th:href="@{/products}" th:text="#{ShowALlProduct}"></a></td>
-        </tr>
     </table>
+    <div class="row">
+        <div class="col-8"></div>
+        <div class="col-4">
+            <a th:href="@{/(page=${categories.number - 1})}" th:if="${categories.hasPrevious()}"
+               class="btn btn-primary">Previous</a>
+            <span th:text="${categories.number + 1}"></span>/<span th:text="${categories.totalPages}"></span>
+            <a th:href="@{/(page=${categories.number + 1})}" th:if="${categories.hasNext()}"class="btn btn-primary ">Next</a>
+        </div>
+    </div>
+    <div  class="text-center" th:insert="~{fragment/footer::copy}"> </div>
 </div>
+
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 

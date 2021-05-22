@@ -6,17 +6,18 @@ import com.example.cart.model.Product;
 import com.example.cart.service.category.ICategoryService;
 import com.example.cart.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import javax.xml.ws.Binding;
-import java.util.List;
-import java.util.Map;
+
 
 @Controller
 @RequestMapping("/products")
@@ -33,6 +34,10 @@ public class ProductController {
         return new Cart();
     }
 
+    @GetMapping
+    public ModelAndView showAllProduct(@PageableDefault(value = 4)Pageable pageable) {
+        return new ModelAndView("/product/list", "products", iProductService.findAll(pageable));
+    }
     @GetMapping("/cart/{id}")
     public String addToCart(@ModelAttribute Cart cart,@PathVariable int id,Model model) {
         Product product = iProductService.findById(id);
@@ -56,14 +61,11 @@ public class ProductController {
 
 
     @GetMapping("/list/{id}")
-    public ModelAndView showProductByCategory(@PathVariable int id) {
+    public ModelAndView showProductByCategory(@PathVariable int id ,@PageableDefault(value = 4)Pageable pageable) {
         return new ModelAndView("product/list", "products", iCategoryService.findById(id).getProducts());
     }
 
-    @GetMapping
-    public ModelAndView showAllProduct() {
-        return new ModelAndView("product/list", "products", iProductService.findAll());
-    }
+
 
     @GetMapping("/create")
     public String createFromProduct(Model model) {
