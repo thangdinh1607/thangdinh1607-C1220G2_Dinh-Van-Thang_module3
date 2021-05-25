@@ -36,14 +36,14 @@ public class ProductController {
 
     @GetMapping
     public ModelAndView showAllProduct(@PageableDefault(value = 4)Pageable pageable) {
-        return new ModelAndView("/product/list", "products", iProductService.findAll(pageable));
+        return new ModelAndView("product/list", "products", iProductService.findAll(pageable));
     }
     @GetMapping("/cart/{id}")
     public String addToCart(@ModelAttribute Cart cart,@PathVariable int id,Model model) {
         Product product = iProductService.findById(id);
         model.addAttribute("product",product);
         if(product == null){
-            return "/error-page";
+            return "security/403";
         }else {
             cart.addToCart(product);
             model.addAttribute("msg","Add " + product.getName() + " to cart successfully : " + cart.countProductQuantity(product));

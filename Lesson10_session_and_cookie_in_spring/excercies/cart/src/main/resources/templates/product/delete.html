@@ -13,11 +13,18 @@
         </div>
         <div  th:insert="~{fragment/header::header}"> </div>
     </div>
+
+
+
     <form th:action="@{/products/delete}" method="post" th:object="${product}">
         <h3> Do u want delete <span th:text="${product.name}" ></span> ?</h3>
         <input type="hidden" th:field="${product.id}">
         <input type="submit" value="Submit" class="btn btn-primary"> <a th:href="@{/products}" class="btn btn-primary">Cancel</a>
     </form>
+
+
+
+
     <div  class="text-center" th:insert="~{fragment/footer::copy}"> </div>
 </div>
 

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+</head>
+<body>
+<div class="container">
+    <h2 class="text-center">Service List</h2>
+    <div class="row">
+        <div class="col-8">
+            <a th:href="@{/services/create}" class="btn btn-primary"> Add New Service </a>
+        </div>
+        <div class="col-4">
+            <form class="d-flex" th:action="@{/services/list}">
+                <input type="text" name="name">
+                <input class="btn btn-outline-success" value="Search" type="submit">
+            </form>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col" colspan="3">Action</th>
+
+        </tr>
+        </thead>
+        <th:block>
+            <tbody>
+            <tr th:each="c,n:${services}">
+                <th scope="row" th:text="${n.count}"></th>
+                <td th:text="${c.name}"></td>
+                <td>
+                    <div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                            Delete
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Delete </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p> Do u wan delete <span th:text="${c.name}"></span> ?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        </button>
+                                        <a th:href="@{/services/delete/__${c.getId()}__}" class="btn btn-warning">
+                                            Delete </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td><a th:href="@{/services/edit/__${c.getId()}__}" class="btn btn-primary">Edit </a></td>
+                <td><a th:href="@{/services/view/__${c.getId()}__}" class="btn btn-warning"> view </a></td>
+            </tr>
+            </tbody>
+        </th:block>
+    </table>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+            <li class="page-item">
+                <a class="page-link" th:href="@{/services/(page=${services.number - 1})}"
+                   th:if="${services.hasPrevious()}" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+            <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+            <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+            <li class="page-item">
+                <a class="page-link" th:href="@{/services/(page=${services.number + 1})}"
+                   th:if="${services.hasNext()}">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <a th:href="@{/}" class="btn btn-primary">Back</a>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

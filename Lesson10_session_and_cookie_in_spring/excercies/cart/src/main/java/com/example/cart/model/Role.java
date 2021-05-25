@@ -1,8 +1,6 @@
-package com.example.spring_security.model;
-
+package com.example.cart.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "roles")
@@ -11,15 +9,12 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @ManyToMany(mappedBy = "roles",cascade = CascadeType.ALL)
-    private List<User> users;
 
-    public Role() {
+    public Role(String name) {
+        this.name = name;
     }
 
-    public Role(String name, List<User> users) {
-        this.name = name;
-        this.users = users;
+    public Role() {
     }
 
     public int getId() {
@@ -36,13 +31,5 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
     }
 }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9c2d2ba5-aef4-4048-b301-4fcf31743c4d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/java/com/example/cart/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/java/com/example/cart/model/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/java/com/example/cart/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/java/com/example/cart/repository/user/IUserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/java/com/example/cart/service/user_detail/MyUserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/java/com/example/cart/service/user_detail/UserDetailServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/templates/cart/403.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/templates/security/403.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/templates/security/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/test/java/com/example/cart/getPassword.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/java/com/example/spring_security/config/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/java/com/example/spring_security/controller/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/java/com/example/spring_security/model/AppRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/java/com/example/spring_security/model/AppUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/java/com/example/spring_security/model/UserRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/java/com/example/spring_security/repository/IAppUserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/java/com/example/spring_security/repository/IUserRoleReposotory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/java/com/example/spring_security/service/UserDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/java/com/example/spring_security/util/EncrytedPasswordUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/java/com/example/spring_security/util/WebUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/resources/templates/403Page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/resources/templates/_menu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/resources/templates/adminPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/resources/templates/loginPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/resources/templates/logoutSuccessfulPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/resources/templates/userInfoPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/resources/templates/welcomePage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/java/com/example/cart/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/java/com/example/cart/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/java/com/example/cart/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/java/com/example/cart/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/templates/fragment/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/templates/fragment/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/templates/product/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/templates/product/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/templates/product/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/templates/product/delete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/templates/product/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/templates/product/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/templates/product/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/main/resources/templates/product/view.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/test/java/com/example/cart/CartApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson10_session_and_cookie_in_spring/excercies/cart/src/test/java/com/example/cart/CartApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/java/com/example/spring_security/model/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/java/com/example/spring_security/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson14_security_aplication_web_in_spring/practices/security/src/main/resources/templates/login.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1sxq64C3GEtvZULITZbfds9AjdG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c2d2ba5-aef4-4048-b301-4fcf31743c4d" name="Default Changelist" comment="" />
+      <created>1621824409269</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1621824409269</updated>
+      <workItem from="1621824412944" duration="43000" />
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="342" y="180" key="new project wizard" timestamp="1621824456493">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="342" y="180" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1621824456493" />
+  </component>
+</project>

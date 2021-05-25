@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Product List</title>
@@ -9,15 +9,13 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-8">
+        <div class="col-6">
             <h2 class="text-center">Product List</h2>
         </div>
-        <div class="col-4">
+        <div class="col-6">
             <div th:insert="~{fragment/header::header}"></div>
-
         </div>
     </div>
-
     <a class="btn btn-primary" th:href="@{/products/create}">Create</a>
     <input type="text" id="search">
     <input class="btn btn-success" type="button" id="search-btn" value="Search">
@@ -28,7 +26,9 @@
             <th scope="col">Name</th>
             <th scope="col">Description</th>
             <th scope="col">Category</th>
-            <th scope="col" colspan="3">Action</th>
+
+            <th scope="col" colspan="2" sec:authorize="hasAnyAuthority('ADMIN','EDITOR')">Action</th>
+            <th scope="col" colspan="1" sec:authorize="hasAnyAuthority('MEMBER','ADMIN','EDITOR')">View</th>
         </tr>
         </thead>
         <tbody>
@@ -37,22 +37,31 @@
             <td th:text="${p.name}"></td>
             <td th:text="${p.description}"></td>
             <td th:text="${p.category.name}"></td>
-            <td><a th:href="@{/products/delete/__${p.getId()}__}" class="btn btn-danger">Delete </a></td>
-            <td><a th:href="@{/products/edit/__${p.getId()}__}" class="btn btn-warning">Edit</a></td>
-            <td><a th:href="@{/products/view/__${p.getId()}__}" class="btn btn-warning">View</a></td>
+
+
+            <td><a th:href="@{/products/delete/__${p.getId()}__}" class="btn btn-danger"
+                   sec:authorize="hasAuthority('ADMIN')">Delete </a></td>
+
+            <td><a th:href="@{/products/edit/__${p.getId()}__}" class="btn btn-warning"
+                   sec:authorize="hasAnyAuthority('EDITOR','ADMIN')">Edit</a></td>
+
+            <td><a th:href="@{/products/view/__${p.getId()}__}" class="btn btn-warning"
+                   sec:authorize="hasAnyAuthority('MEMBER','ADMIN','EDITOR')">View</a></td>
+
+
         </tr>
         </tbody>
     </table>
-<!--    <div class="row">-->
-<!--        <div class="col-8"></div>-->
-<!--        <div class="col-4">-->
-<!--            <a th:href="@{/products/(page=${products.number - 1})}" th:if="${products.hasPrevious()}"-->
-<!--               class="btn btn-primary">Previous</a>-->
-<!--            <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>-->
-<!--            <a th:href="@{/products/(page=${products.number + 1})}" th:if="${products.hasNext()}"-->
-<!--               class="btn btn-primary ">Next</a>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    <div class="row">-->
+    <!--        <div class="col-8"></div>-->
+    <!--        <div class="col-4">-->
+    <!--            <a th:href="@{/products/(page=${products.number - 1})}" th:if="${products.hasPrevious()}"-->
+    <!--               class="btn btn-primary">Previous</a>-->
+    <!--            <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>-->
+    <!--            <a th:href="@{/products/(page=${products.number + 1})}" th:if="${products.hasNext()}"-->
+    <!--               class="btn btn-primary ">Next</a>-->
+    <!--        </div>-->
+    <!--    </div>-->
     <div class="row">
         <div class="col-10">
 
