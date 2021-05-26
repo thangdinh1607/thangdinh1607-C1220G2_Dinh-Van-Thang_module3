@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+</head>
+<body>
+<div class="container">
+    <div th:insert="~{fragment/header::header}"></div>
+    <h2 class="text-center">Contract Detail</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Contract id</th>
+            <th scope="col">Start date</th>
+            <th scope="col">end date</th>
+            <th scope="col">Deposit</th>
+            <th scope="col">Total Money</th>
+            <th scope="col">Employees</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Service</th>
+            <th scope="col">Attach Service Name</th>
+            <th scope="col">Attach Service Cost</th>
+            <th scope="col">Attach Service Unit</th>
+            <th scope="col">Attach Service status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:object="${contractDetail}">
+            <td th:text="*{contract.id}"></td>
+            <td th:text="*{contract.startDate}"></td>
+            <td th:text="*{contract.endDate}"></td>
+            <td th:text="*{contract.deposit}"></td>
+            <td th:text="*{contract.totalMoney}"></td>
+            <td th:text="*{contract.employee.name}"></td>
+            <td th:text="*{contract.customer.name}"></td>
+            <td th:text="*{contract.service.name}"></td>
+            <td th:text="*{attachService.name}"></td>
+            <td th:text="*{attachService.cost}"></td>
+            <td th:text="*{attachService.unit}"></td>
+            <td th:text="*{attachService.status}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-8"></div>
+        <div class="col-4"><a th:href="@{/contractDetails}" class="btn btn-primary">Back to ContractDetail List </a>
+        </div>
+    </div>
+    <div class="text-center" th:insert="~{fragment/footer::footer}"></div>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

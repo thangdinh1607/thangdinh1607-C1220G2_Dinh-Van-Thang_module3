@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Customer</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+</head>
+<body>
+<div class="container">
+    <div th:insert="~{fragment/header::header}"></div>
+    <form th:action="@{/services/edit}" th:object="${service}" method="post">
+
+        <input type="hidden" th:field="*{id}">
+        <div class="form-group ">
+            <label for="inputEmail4">Name</label>
+            <input type="text" class="form-control" id="inputEmail4" th:field="*{name}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{name}"></p>
+        </div>
+        <div class="form-group ">
+            <label for="area">Birthday</label>
+            <input type="number" class="form-control" id="area" th:field="*{area}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{area}"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="inputAddress">Id Card</label>
+            <input type="number" class="form-control" id="inputAddress"  th:field="*{cost}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{cost}"></p>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">Phone Number </label>
+            <input type="number" class="form-control" id="inputAddress2"  th:field="*{maxPeople}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{maxPeople}"></p>
+        </div>
+        <div class="form-group ">
+            <label for="inputCity">Email</label>
+            <input type="text" class="form-control" id="inputCity" th:field="*{standardRoom}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{standardRoom}"></p>
+        </div>
+        <div class="form-group ">
+            <label for="description">Address</label>
+            <input type="text" class="form-control" id="description" th:field="*{description}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{description}"></p>
+        </div>
+        <div class="form-group ">
+            <label for="poolArea">Pool Area</label>
+            <input type="text" class="form-control" id="poolArea" th:field="*{poolArea}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{poolArea}"></p>
+        </div>
+        <div class="form-group ">
+            <label for="numberFloor">Pool Area</label>
+            <input type="text" class="form-control" id="numberFloor" th:field="*{numberOfFloor}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{numberOfFloor}"></p>
+        </div>
+        <div class="form-group ">
+            <div class="form-group">
+                <label for="account">Rent Type</label>
+                <select id="account" th:field="${service.rentType}">
+                    <th:block th:each="rt:${rentTypes}">
+                        <option th:value="${rt.id}" th:text="${rt.name}"></option>
+                    </th:block>
+                </select>
+            </div>
+        </div>
+        <div class="form-group ">
+            <div class="form-group">
+                <label for="division">Service Type</label>
+                <select id="division" th:field="${service.serviceType}">
+                    <th:block th:each="st:${serviceTypes}">
+                        <option th:value="${st.id}" th:text="${st.name}"></option>
+                    </th:block>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    Check me out
+                </label>
+            </div>
+        </div>
+        <input type="submit" value="Edit" class="btn btn-primary">
+        <a th:href="@{/services}" class="btn btn-primary">Cancel</a>
+    </form>
+    <div class="text-center" th:insert="~{fragment/footer::footer}"></div>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

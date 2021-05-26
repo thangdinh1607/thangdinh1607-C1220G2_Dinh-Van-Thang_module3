@@ -1,34 +1,50 @@
 package com.example.case_study.model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Id
-    private String user;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String username;
     private String password;
-    @ManyToMany
+
+
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+    private Set<Role> roles;
 
-    public User(String user, String password) {
-        this.user = user;
+    public User(String username, String password, Set<Role> roles) {
+        this.username = username;
         this.password = password;
+
+        this.roles = roles;
     }
 
     public User() {
+        roles= new HashSet<>();
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String users) {
-        this.user = users;
+    public void setUsername(String users) {
+        this.username = users;
     }
 
     public String getPassword() {
@@ -37,5 +53,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

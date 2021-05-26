@@ -7,14 +7,20 @@
 </head>
 <body>
 <div class="container">
+    <div th:insert="~{fragment/header::header}"></div>
     <h2 class="text-center">Customer List</h2>
     <div class="row">
-        <div class="col-8">
-            <a th:href="@{/customers/create}" class="btn btn-primary"> Create </a>
+        <div class="col-6">
+            <a th:href="@{/customers/create}" class="btn btn-primary"> Add New Customer </a>
         </div>
-        <div class="col-4">
-            <form class="d-flex" th:action="@{/customers/list}">
-                <input type="text" name="name">
+        <div class="col-6">
+            <form class="d-flex" th:action="@{/customers/search}">
+                <label for="nameSearch">Name</label>
+                <input type="text" name="nameSearch" id="nameSearch" th:value="${nameSearch}">
+                <label for="addressSearch">Address</label>
+                <input type="text" name="addressSearch" id="addressSearch" th:value="${addressSearch}">
+                <label for="emailSearch">Address</label>
+                <input type="text" name="emailSearch" id="emailSearch" th:value="${emailSearch}">
                 <input class="btn btn-outline-success" value="Search" type="submit">
             </form>
         </div>
@@ -95,6 +101,7 @@
         </ul>
     </nav>
     <a th:href="@{/}" class="btn btn-primary">Back</a>
+    <div class="text-center" th:insert="~{fragment/footer::footer}"></div>
 </div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

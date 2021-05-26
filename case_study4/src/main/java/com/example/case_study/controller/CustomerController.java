@@ -10,9 +10,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -40,9 +42,14 @@ public class CustomerController {
         return "customer/create";
     }
     @PostMapping("/create")
-    public String create(@ModelAttribute Customer customer){
-        iCustomerService.save(customer);
-        return "redirect:/customers";
+    public String create(@Valid @ModelAttribute Customer customer, BindingResult bindingResult , Model model){
+        if(bindingResult.hasFieldErrors()){
+            model.addAttribute("customerTypes",iCustomerTypeService.findAll());
+            return "customer/create";
+        }else{
+            iCustomerService.save(customer);
+            return "redirect:/customers";
+        }
     }
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id){
@@ -56,13 +63,29 @@ public class CustomerController {
         return "customer/edit";
     }
     @PostMapping("/edit")
-    public String edit(@ModelAttribute Customer customer){
+    public String edit(@Valid @ModelAttribute Customer customer ,BindingResult bindingResult,Model model){
+        if(bindingResult.hasFieldErrors()){
+            model.addAttribute("customerTypes",iCustomerTypeService.findAll());
+            return "customer/edit";
+        }
        iCustomerService.save(customer);
        return "redirect:/customers";
     }
     @GetMapping("/view/{id}")
     public ModelAndView view (@PathVariable int id){
         return new  ModelAndView("/customer/view","customer",iCustomerService.findById(id));
+    }
+    @GetMapping("/search")
+    public String searching(Pageable pageable, Model model,
+                        @RequestParam(value = "nameSearch" ,required = false)String nameSearch,
+                        @RequestParam(value = "addressSearch" ,required = false) String addressSearch,
+                         @RequestParam(value = "emailSearch" ,required = false )String emailSearch
+    ){
+       model.addAttribute("nameSearch",nameSearch);
+       model.addAttribute("addressSearch",addressSearch);
+       model.addAttribute("emailSearch",emailSearch);
+       model.addAttribute("customers",iCustomerService.findAllByNameContainingAndAddressContainingAndEmailContaining(nameSearch,addressSearch,emailSearch,pageable));
+       return "customer/list";
     }
 }
 

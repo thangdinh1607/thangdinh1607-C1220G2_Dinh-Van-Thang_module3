@@ -7,13 +7,14 @@
 </head>
 <body>
 <div class="container">
-    <h2 class="text-center">Customer List</h2>
+    <div th:insert="~{fragment/header::header}"></div>
+    <h2 class="text-center">Employee List</h2>
     <div class="row">
         <div class="col-8">
-            <a th:href="@{/customers/create}" class="btn btn-primary"> Create </a>
+            <a th:href="@{/employees/create}" class="btn btn-primary"> Add New Employee </a>
         </div>
         <div class="col-4">
-            <form class="d-flex" th:action="@{/customers/list}">
+            <form class="d-flex" th:action="@{/employees/list}">
                 <input type="text" name="name">
                 <input class="btn btn-outline-success" value="Search" type="submit">
             </form>
@@ -30,7 +31,7 @@
         </thead>
         <th:block>
             <tbody>
-            <tr th:each="c,n:${customers}">
+            <tr th:each="c,n:${employees}">
                 <th scope="row" th:text="${n.count}"></th>
                 <td th:text="${c.name}"></td>
                 <td>
@@ -50,12 +51,12 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p> Do u wan delete <span th:text="${c.name}"></span> ?</p>
+                                        <p> Do u wan delete <span th:text="${c.getName()}"></span> ?</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                         </button>
-                                        <a th:href="@{/customers/delete/__${c.getId()}__}" class="btn btn-warning">
+                                        <a th:href="@{/employees/delete/__${c.getId()}__}" class="btn btn-warning">
                                             Delete </a>
                                     </div>
                                 </div>
@@ -63,38 +64,29 @@
                         </div>
                     </div>
                 </td>
-                <td><a th:href="@{/customers/edit/__${c.getId()}__}" class="btn btn-primary">Edit </a></td>
-                <td><a th:href="@{/customers/view/__${c.getId()}__}" class="btn btn-warning"> view </a></td>
+                <td><a th:href="@{/employees/edit/__${c.getId()}__}" class="btn btn-primary">Edit </a></td>
+                <td><a th:href="@{/employees/view/__${c.getId()}__}" class="btn btn-warning"> view </a></td>
             </tr>
             </tbody>
         </th:block>
     </table>
-    <!--    <div class="row">-->
-    <!--        <div class="col-8"></div>-->
-    <!--        <div class="col-4">-->
-    <!--            <a th:href="@{/customers/list/(page=${customers.number - 1})}" th:if="${customers.hasPrevious()}"-->
-    <!--               class="btn btn-primary">Previous</a>-->
-    <!--            <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>-->
-    <!--            <a th:href="@{/customers/list/(page=${customers.number + 1})}" th:if="${customers.hasNext()}"class="btn btn-primary ">Next</a>-->
-    <!--        </div>-->
-    <!--    </div>-->
-
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
             <li class="page-item">
-                <a class="page-link" th:href="@{/customers/(page=${customers.number - 1})}"
-                   th:if="${customers.hasPrevious()}" tabindex="-1">Previous</a>
+                <a class="page-link" th:href="@{/customers/(page=${employees.number - 1})}"
+                   th:if="${employees.hasPrevious()}" tabindex="-1">Previous</a>
             </li>
             <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
             <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
             <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
             <li class="page-item">
-                <a class="page-link" th:href="@{/customers/(page=${customers.number + 1})}"
-                   th:if="${customers.hasNext()}">Next</a>
+                <a class="page-link" th:href="@{/employees/(page=${employees.number + 1})}"
+                   th:if="${employees.hasNext()}">Next</a>
             </li>
         </ul>
     </nav>
     <a th:href="@{/}" class="btn btn-primary">Back</a>
+    <div class="text-center" th:insert="~{fragment/footer::footer}"></div>
 </div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

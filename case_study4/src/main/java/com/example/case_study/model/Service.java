@@ -2,6 +2,8 @@ package com.example.case_study.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
+import java.util.List;
 
 @Entity
 @Table(name = "services")
@@ -9,26 +11,36 @@ public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Size(min = 5,message = "character>5")
     private String name;
+    @Min(value = 20 ,message = "> 20")
+    @Max(value = 100 ,message = "> 20")
     private int area;
+    @Min(value = 1)
     private double cost;
+    @Min(value = 1 ,message = ">1")
+    @Max(value = 20,message = "<20")
     private int maxPeople;
+    @NotEmpty(message = "not empty ne`")
     private String standardRoom;
+    @NotEmpty(message = "not empty ne`")
     private String Description;
+    @Min(value = 20)
+    @Max(value = 100)
     private double poolArea;
+    @Min(1)
     private int numberOfFloor;
 
     @ManyToOne
-    @JoinColumn(name = "rent_type_id",referencedColumnName = "id")
+    @JoinColumn(name = "rent_type_id", referencedColumnName = "id")
     private RentType rentType;
     @ManyToOne
-    @JoinColumn(name = "service_type_id",referencedColumnName = "id")
-   private ServiceType serviceType;
+    @JoinColumn(name = "service_type_id", referencedColumnName = "id")
+    private ServiceType serviceType;
+    @OneToMany(mappedBy = "service",cascade = CascadeType.ALL)
+    private List<Contract> contracts;
 
-    public Service() {
-    }
-
-    public Service(String name, int area, double cost, int maxPeople, String standardRoom, String description, double poolArea, int numberOfFloor, RentType rentType, ServiceType serviceType) {
+    public Service(String name, int area, double cost, int maxPeople, String standardRoom, String description, double poolArea, int numberOfFloor, RentType rentType, ServiceType serviceType, List<Contract> contracts) {
         this.name = name;
         this.area = area;
         this.cost = cost;
@@ -39,7 +51,21 @@ public class Service {
         this.numberOfFloor = numberOfFloor;
         this.rentType = rentType;
         this.serviceType = serviceType;
+        this.contracts = contracts;
     }
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
+    }
+
+    public Service() {
+    }
+
+
 
     public int getId() {
         return id;

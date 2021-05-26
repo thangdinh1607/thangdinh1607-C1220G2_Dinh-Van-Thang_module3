@@ -7,6 +7,7 @@
 </head>
 <body>
 <div class="container">
+    <div th:insert="~{fragment/header::header}"></div>
     <h2 class="text-center">Service List</h2>
     <div class="row">
         <div class="col-8">
@@ -86,6 +87,7 @@
         </ul>
     </nav>
     <a th:href="@{/}" class="btn btn-primary">Back</a>
+    <div class="text-center" th:insert="~{fragment/footer::footer}"></div>
 </div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

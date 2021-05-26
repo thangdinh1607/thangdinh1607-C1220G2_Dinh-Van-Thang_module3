@@ -7,7 +7,8 @@
 </head>
 <body>
 <div class="container">
-    <h2 class="text-center">Customer List</h2>
+    <div th:insert="~{fragment/header::header}"></div>
+    <h2 class="text-center">Employee List</h2>
 
     <table class="table table-hover">
         <thead>
@@ -15,35 +16,36 @@
 
             <th scope="col">Name</th>
             <th scope="col">Birthday</th>
-            <th scope="col">Gender</th>
             <th scope="col">ID Card</th>
+            <th scope="col">Salary</th>
             <th scope="col">Phone Number</th>
             <th scope="col">Email</th>
             <th scope="col">Address</th>
-            <th scope="col">Type Customer</th>
-
-
+            <th scope="col">Position</th>
+            <th scope="col">Education Degree</th>
+            <th scope="col">Division</th>
         </tr>
         </thead>
             <tbody>
-            <tr  th:object="${customer}">
+            <tr  th:object="${employee}">
                 <td th:text="*{name}"></td>
                 <td th:text="*{birthday}"></td>
-                <td th:if="*{gender}" th:text="Male"></td>
-                <td th:if="*{gender==false}" th:text="Female"></td>
                 <td th:text="*{idCard}"></td>
+                <td th:text="*{salary}"></td>
                 <td th:text="*{phone}"></td>
                 <td th:text="*{email}"></td>
                 <td th:text="*{address}"></td>
-                <td th:text="*{customerType.name}"></td>
-
+                <td th:text="*{position.name}"></td>
+                <td th:text="*{educationDegree.name}"></td>
+                <td th:text="*{division.name}"></td>
             </tr>
             </tbody>
     </table>
     <div class="row">
         <div class="col-8"></div>
-        <div class="col-4"> <a th:href="@{/customers}" class="btn btn-primary">Back to Customer List  </a></div>
+        <div class="col-4"> <a th:href="@{/employees}" class="btn btn-primary">Back to Employees List  </a></div>
     </div>
+    <div class="text-center" th:insert="~{fragment/footer::footer}"></div>
 </div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

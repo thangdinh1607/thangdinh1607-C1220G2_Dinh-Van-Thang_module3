@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+</head>
+<body>
+<div class="container">
+    <div th:insert="~{fragment/header::header}"></div>
+    <h2 class="text-center">Service List</h2>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Area</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Max People</th>
+            <th scope="col">Standard room</th>
+            <th scope="col">Description</th>
+            <th scope="col">Pool Area</th>
+            <th scope="col">Number of floor</th>
+            <th scope="col">Rent type</th>
+            <th scope="col">Service type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:object="${service}">
+            <td th:text="*{name}"></td>
+            <td th:text="*{area}"></td>
+            <td th:text="*{cost}"></td>
+            <td th:text="*{maxPeople}"></td>
+            <td th:text="*{standardRoom}"></td>
+            <td th:text="*{description}"></td>
+            <td th:text="*{poolArea}"></td>
+            <td th:text="*{numberOfFloor}"></td>
+            <td th:text="*{rentType.name}"></td>
+            <td th:text="*{serviceType.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-8"></div>
+        <div class="col-4"><a th:href="@{/services}" class="btn btn-primary">Back to Employees List </a></div>
+    </div>
+    <div class="text-center" th:insert="~{fragment/footer::footer}"></div>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

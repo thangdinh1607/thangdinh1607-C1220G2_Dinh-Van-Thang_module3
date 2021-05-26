@@ -7,39 +7,49 @@
 </head>
 <body>
 <div class="container">
-    <form th:action="@{/service/create}" th:object="${service}" method="post">
+    <div th:insert="~{fragment/header::header}"></div>
+    <form th:action="@{/services/create}" th:object="${service}" method="post">
 
         <div class="form-group ">
             <label for="inputEmail4">Name</label>
             <input type="text" class="form-control" id="inputEmail4" th:field="*{name}">
+            <p th:if="${#fields.hasErrors()}" th:errors="*{name}" class="text-danger"></p>
         </div>
         <div class="form-group ">
             <label for="birthday">Area</label>
             <input type="number" class="form-control" id="birthday" th:field="*{area}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{area}"></p>
+
         </div>
         <div class="form-group">
             <label for="inputAddress1">Cost</label>
             <input type="number" class="form-control" id="inputAddress1"  th:field="*{cost}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{cost}"></p>
         </div>
         <div class="form-group">
             <label for="inputAddress">Max People</label>
             <input type="number" class="form-control" id="inputAddress"  th:field="*{maxPeople}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{maxPeople}"></p>
         </div>
         <div class="form-group">
             <label for="inputAddress2">standard room </label>
             <input type="text" class="form-control" id="inputAddress2" th:field="*{standardRoom}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{standardRoom}"></p>
         </div>
         <div class="form-group ">
             <label for="inputCity">Description</label>
             <input type="text" class="form-control" id="inputCity" th:field="*{description}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{description}"></p>
         </div>
         <div class="form-group ">
             <label for="address">Pool area</label>
             <input type="text" class="form-control" id="address" th:field="*{poolArea}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{poolArea}"></p>
         </div>
         <div class="form-group ">
             <label for="address1">Number of floor</label>
             <input type="text" class="form-control" id="address1" th:field="*{numberOfFloor}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{numberOfFloor}"></p>
         </div>
         <div class="form-group ">
             <div class="form-group">
@@ -70,8 +80,9 @@
             </div>
         </div>
         <input type="submit" value="Create" class="btn btn-primary">
-        <a th:href="@{customers/list}" class="btn btn-primary">Cancel</a>
+        <a th:href="@{/services}" class="btn btn-primary">Cancel</a>
     </form>
+    <div class="text-center" th:insert="~{fragment/footer::footer}"></div>
 </div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

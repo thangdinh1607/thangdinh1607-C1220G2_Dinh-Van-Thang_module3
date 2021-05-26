@@ -1,6 +1,8 @@
 package com.example.case_study.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -8,19 +10,29 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Size(min = 5,message = "character >5")
     private String name;
+    @NotEmpty(message = "input birthday")
     private String birthday;
     private boolean gender;
+    @Pattern(regexp = "^\\d{9}$" ,message = "0-9")
     private String idCard;
+    @Pattern(regexp = "^((090)|(091))\\d{7}",message = "090x-xxx-xxx")
     private String phone;
+    @Email(message = "abc@abc.abc")
     private String email;
+    @NotBlank(message = "not blank ne`")
     private String address;
 
     @ManyToOne
     @JoinColumn(name = "customer_type_id" ,referencedColumnName = "id")
     private CustomerType customerType;
 
-    public Customer(String name, String birthday, boolean gender, String idCard, String phone, String email, String address, CustomerType customerType) {
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    private List<Contract> contracts;
+
+
+    public Customer(String name, String birthday, boolean gender, String idCard, String phone, String email, String address, CustomerType customerType, List<Contract> contracts) {
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
@@ -29,6 +41,15 @@ public class Customer {
         this.email = email;
         this.address = address;
         this.customerType = customerType;
+        this.contracts = contracts;
+    }
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
     public Customer() {

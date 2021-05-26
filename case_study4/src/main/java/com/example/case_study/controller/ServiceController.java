@@ -9,11 +9,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/services")
@@ -42,8 +42,48 @@ public class ServiceController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute Service service) {
-        iServiceService.save(service);
+    public String create(@Valid @ModelAttribute Service service, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("rentTypes", iRentypeService.findAll());
+            model.addAttribute("serviceTypes", iServiceServiceType.findAll());
+            return "service/create";
+        } else {
+            iServiceService.save(service);
+            return "redirect:/services";
+        }
+
+    }
+
+    @GetMapping("/view/{id}")
+    public ModelAndView view(@PathVariable int id) {
+
+        return new ModelAndView("/service/view", "service", iServiceService.findById(id));
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable int id) {
+        iServiceService.remove(id);
         return "redirect:/services";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editForm(@PathVariable int id, Model model) {
+        ModelAndView modelAndView = new ModelAndView("service/edit");
+        model.addAttribute("service", iServiceService.findById(id));
+        model.addAttribute("rentTypes", iRentypeService.findAll());
+        model.addAttribute("serviceTypes", iServiceServiceType.findAll());
+        return "service/edit";
+    }
+
+    @PostMapping("/edit")
+    public String edit(@ModelAttribute Service service, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("rentTypes", iRentypeService.findAll());
+            model.addAttribute("serviceTypes", iServiceServiceType.findAll());
+            return "service/edit";
+        } else {
+            iServiceService.save(service);
+            return "redirect:/services";
+        }
     }
 }

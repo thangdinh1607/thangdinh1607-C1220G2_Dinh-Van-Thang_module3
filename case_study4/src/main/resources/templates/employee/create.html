@@ -2,52 +2,74 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create Customer</title>
+    <title>Create Employee</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
 </head>
 <body>
 <div class="container">
-    <form th:action="@{/customers/create}" th:object="${customer}" method="post">
-
+    <div th:insert="~{fragment/header::header}"></div>
+    <form th:action="@{/employees/create}" th:object="${employee}" method="post">
         <div class="form-group ">
-            <label for="inputEmail4">Name</label>
-            <input type="text" class="form-control" id="inputEmail4" th:field="*{name}">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}">
+            <p th:if="${#fields.hasErrors()}" th:errors="*{name}" class="text-danger"></p>
         </div>
         <div class="form-group ">
             <label for="birthday">Birthday</label>
             <input type="date" class="form-control" id="birthday" th:field="*{birthday}">
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">Gender</label>
-            </div>
-            <select class="custom-select" id="inputGroupSelect01" th:field="*{gender}">
-                <!--                <option th:value="" disabled >Choose...</option>-->
-                <option th:value="1">Male</option>
-                <option th:value="0">Female</option>
-            </select>
+            <p th:if="${#fields.hasErrors()}" th:errors="*{birthday}"class="text-danger" ></p>
         </div>
         <div class="form-group">
-            <label for="inputAddress">Id Card</label>
-            <input type="number" class="form-control" id="inputAddress" placeholder="Id Card" th:field="*{idCard}">
+            <label for="idCard">Id Card</label>
+            <input type="number" class="form-control" id="idCard" th:field="*{idCard}">
+            <p th:if="${#fields.hasErrors()}" th:errors="*{idCard}" class="text-danger"></p>
         </div>
         <div class="form-group">
-            <label for="inputAddress2">Phone Number </label>
-            <input type="number" class="form-control" id="inputAddress2" placeholder="Phone number" th:field="*{phone}">
+            <label for="salary">Salary </label>
+            <input type="number" class="form-control" id="salary" th:field="*{salary}">
+            <p th:if="${#fields.hasErrors()}" th:errors="*{salary}" class="text-danger"></p>
         </div>
         <div class="form-group ">
-            <label for="inputCity">Email</label>
-            <input type="text" class="form-control" id="inputCity" th:field="*{email}">
+            <label for="phone">Phone Number</label>
+            <input type="text" class="form-control" id="phone" th:field="*{phone}">
+            <p th:if="${#fields.hasErrors()}" th:errors="*{phone}" class="text-danger"></p>
+        </div>
+        <div class="form-group ">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" th:field="*{email}">
+            <p th:if="${#fields.hasErrors()}" th:errors="*{email}" class="text-danger"></p>
         </div>
         <div class="form-group ">
             <label for="address">Address</label>
             <input type="text" class="form-control" id="address" th:field="*{address}">
+            <p th:if="${#fields.hasErrors()}" class="text-danger" th:errors="*{address}"></p>
         </div>
         <div class="form-group ">
             <div class="form-group">
-                <select th:field="${customer.customerType.id}">
-                    <th:block th:each="ct:${customerTypes}">
-                        <option th:value="${ct.id}" th:text="${ct.name}"> </option>
+                <label for="position">Position</label>
+                <select id="position" th:field="${employee.position.id}">
+                    <th:block th:each="p:${positions}">
+                        <option th:value="${p.id}" th:text="${p.name}"></option>
+                    </th:block>
+                </select>
+            </div>
+        </div>
+        <div class="form-group ">
+            <div class="form-group">
+                <label for="education">Education Degree</label>
+                <select id="education"th:field="${employee.educationDegree.id}">
+                    <th:block th:each="e:${educationDegree}">
+                        <option th:value="${e.id}" th:text="${e.name}"></option>
+                    </th:block>
+                </select>
+            </div>
+        </div>
+        <div class="form-group ">
+            <div class="form-group">
+                <label for="division">Division</label>
+                <select id="division"th:field="${employee.division.id}">
+                    <th:block th:each="d:${divisions}">
+                        <option th:value="${d.id}" th:text="${d.name}"></option>
                     </th:block>
                 </select>
             </div>
@@ -61,8 +83,9 @@
             </div>
         </div>
         <input type="submit" value="Create" class="btn btn-primary">
-        <a th:href="@{customers/list}" class="btn btn-primary">Cancel</a>
+        <a th:href="@{/employees}" class="btn btn-primary">Cancel</a>
     </form>
+    <div class="text-center" th:insert="~{fragment/footer::footer}"></div>
 </div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
